@@ -26,7 +26,7 @@ public class EmailConsumer {
     }
 
     @KafkaListener(topics = "${topic.name}", groupId = "${spring.kafka.consumer.group-id}", containerFactory = "emailKafkaListenerContainerFactory")
-    public void listenTopicCar(ConsumerRecord<String, EmailDTO> record) {
+    public void listenTopicEmail(ConsumerRecord<String, EmailDTO> record) {
         EmailDTO email = record.value();
         emailService.sendEmail(email.getTo(), email.getSubject(), email.getBody());
     }
